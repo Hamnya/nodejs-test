@@ -3,13 +3,13 @@ var request = require('request');
 var winston = require('winston'); //로그 처리 모듈
 var winstonDaily = require('winston-daily-rotate-file'); // 로그 일별 처리 모듈
 var moment = require('moment'); //시간 처리 모듈
-
 /*
 * 로그 파일 셋팅 winston
 */
 function timeStampFormat(){
   return moment().format('YYYY-MM-DD HH:mm:ss');
 }
+
 var logger = new (winston.Logger)({
 //winston 모듈로 만드는 로거(Logger, 로그를 출력하는 객체를 말할 때 사용하는 용어)는 transports 라는 속성 값으로 여러 개의 설정 정보를 전달 할 수 있다.
     transports: [
@@ -64,58 +64,62 @@ var logger = new (winston.Logger)({
 /*
 * TCP 서버 시작
 */
+
+
+
 var server = net_server.createServer(function (client){
 
-  logger.info('Client connection: ');
-  logger.info('   local = %s:%s', client.localAddress, client.localPort);
-  logger.info('   remote = %s:%s', client.remoteAddress, client.remotePort);
+  logger.info('(클라이언트 접근)Client connection: ');
+  logger.info('   (서버IP:PORT)local = %s:%s', client.localAddress, client.localPort);
+  logger.info('   (클라이언트IP:PORT)remote = %s:%s', client.remoteAddress, client.remotePort);
 
   client.setTimeout(500);
   client.setEncoding('utf8');
 
 
   client.on('data', function(data){
-    logger.info("Received data from client on port %d: %s", client.remotePort, data.toString());
+    logger.info("(받은 데이터)Received data from client on port %d: %s", client.remotePort, data.toString());
     writeData(client, 'Sending: ' + data.toString());
-    logger.info(' Bytes sent: ' + client.bytesWritten);
+    logger.info('(데이터 크기 Bytes sent: ' + client.bytesWritten);
 
 
     //HTTP 리퀘스트 시작
     var sendURL = "https://www.todayrecycle.com/trbox/test.jsp";
-    logger.info(' Start HTTP Request URL : ' + sendURL);
+    logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
     sendData(sendURL, data.toString());
 
   });
 
   client.on('end', function(){
-    logger.info('Client disconnected');
+    logger.info('(클라리언트 연결 종료)Client disconnected');
   });
 
   client.on('error', function(err){
-    logger.info('Socket Error: ', JSON.stringify(err));
+    logger.info('(소켓 에러)Socket Error: ', JSON.stringify(err));
   });
 
   client.on('timeout', function(){
-    logger.info('Socket Timed out');
+    logger.info('(소켓 타임아웃)Socket Timed out');
   });
 
 
 });
 
 server.listen(5252, function(){
-    logger.info('Server listening: ' + JSON.stringify(server.address()));
+
+    logger.info('(서버 준비완료)Server listening: ' + JSON.stringify(server.address()));
     server.on('close', function(){
-      logger.info('Server Terminsated');
+      logger.info('(서버 종료)Server Terminsated');
     });
     server.on('error', function(err){
-      logger.info('Server Error: ', JSON.stringify(err));
+      logger.info('(서버 오류)Server Error: ', JSON.stringify(err));
     });
 });
 
 function writeData(socket, data){
   var success = socket.write(data);
   if(!success){
-    logger.info("Clinet Send Fail");
+    logger.info("(클라이언트의 보냄 실패) Clinet Send Fail");
   }
 
 }
@@ -131,7 +135,7 @@ function sendData(url, param){
           qs: tr_param
         },function(error, response, body){
             if(!error && response.statusCode == 200){
-                logger.info("REQUEST SUCCESS ");
+                logger.info("(전송 성공)REQUEST SUCCESS ");
                 logger.info(body);
             }
           }
