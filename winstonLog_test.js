@@ -12,7 +12,7 @@ var logger = new (winston.Logger)({
 //이름이 info-file인 설정 정보는 매일 새로운 파일에 로그를 기록하도록 설정
             name: 'info-file',
             filename: '/home/ubuntu/log/server/server',
-            datePattern: '_YYYY-MM-dd.log',
+            datePattern: '_yyyy-MM-dd.log',
             colorize: false,
 // 50MB를 넘어 가면 자동으로 새로운 파일을 생성되며, 이때 자동으로 분리되어 생성 되는 파일의 개수는 최대 1000개 까지 가능하다.
             maxsize: 50000000,
@@ -36,7 +36,7 @@ var logger = new (winston.Logger)({
         new (winstonDaily)({
             name: 'exception-file',
             filename: '/home/ubuntu/log/exception/exception',
-            datePattern: '_YYYY-MM-dd.log',
+            datePattern: '_yyyy-MM-dd.log',
             colorize: false,
             maxsize: 50000000,
             maxFiles: 1000,
@@ -58,4 +58,4 @@ var logger = new (winston.Logger)({
 
 
 
-logger.info("로그 파일 테스트 입니다.");
+logger.info("로그 파일 테스트 입니다. ++");
