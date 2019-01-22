@@ -136,7 +136,7 @@ function sendData(url, param){
         },function(error, response, body){
             if(!error && response.statusCode == 200){
                 logger.info("(전송 성공)REQUEST SUCCESS ");
-                logger.info(body);
+                logger.info(body.trim());
             }
           }
       );
