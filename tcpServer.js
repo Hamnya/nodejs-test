@@ -35,7 +35,7 @@ server.listen(5252, function(){
       console.log('Server Terminsated');
     });
     server.on('error', function(err){
-      console.log('Server Error: ', JSON.stringify(err) ;
+      console.log('Server Error: ', JSON.stringify(err));
     });
 });
 
