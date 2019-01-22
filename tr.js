@@ -91,7 +91,7 @@ var server = net_server.createServer(function (client){
   });
 
   client.on('end', function(){
-    logger.info('(클라리언트 연결 종료)Client disconnected');
+    logger.info('(클라이언트 연결 종료)Client disconnected');
   });
 
   client.on('error', function(err){
