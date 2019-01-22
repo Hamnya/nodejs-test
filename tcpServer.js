@@ -1,4 +1,6 @@
 var net_server = require('net');
+var request = require('request');
+
 var server = net_server.createServer(function (client){
 
   console.log('Client connection: ');
@@ -13,6 +15,17 @@ var server = net_server.createServer(function (client){
     console.log("Received data from client on port %d: %s", client.remotePort, data.toString());
     writeData(client, 'Sending: ' + data.toString());
     console.log(' Bytes sent: ' + client.bytesWritten);
+      var tr_url = 'https://www.todayrecycle.com/trbox/test.jsp';
+      var tr_param = {fun: 'test', data: data.toString()}
+      request.post({
+        url:tr_url,
+        qs: tr_param
+      },function(error, response, body){
+          if(!error && response.statusCode == 200){
+              console.log(body);
+          }
+        }
+      );
 
   });
 
