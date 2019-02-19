@@ -3,7 +3,7 @@ var request = require('request');
 var winston = require('winston'); //로그 처리 모듈
 var winstonDaily = require('winston-daily-rotate-file'); // 로그 일별 처리 모듈
 var moment = require('moment'); //시간 처리 모듈
-var port = 5253;
+
 /*
 * 로그 파일 셋팅 winston
 */
@@ -105,7 +105,7 @@ var server = net_server.createServer(function (client){
 
 });
 
-server.listen(port, function(){
+server.listen(5253, function(){
 
     logger.info('(서버 준비완료)Server listening: ' + JSON.stringify(server.address()));
     server.on('close', function(){
