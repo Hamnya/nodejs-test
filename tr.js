@@ -65,9 +65,7 @@ var logger = new (winston.Logger)({
 * TCP 서버 시작
 */
 
-
-
-var server = net_server.createServer(function (client){
+function connHandler(client){
 
   logger.info('(클라이언트 접근)Client connection: ');
   logger.info('   (서버IP:PORT)local = %s:%s', client.localAddress, client.localPort);
@@ -101,66 +99,16 @@ var server = net_server.createServer(function (client){
   client.on('timeout', function(){
     logger.info('(소켓 타임아웃)Socket Timed out');
   });
+}
 
 
-});
-
-server.listen(5252, function(){
+net_server.createServer(connHandler).listen(5252, function(){
 
     logger.info('(서버 준비완료)Server listening: ' + JSON.stringify(server.address()));
     server.on('close', function(){
       logger.info('(서버 종료)Server Terminsated');
     });
     server.on('error', function(err){
-      logger.info('(서버 오류)Server Error: ', JSON.stringify(err));
-    });
-});
-
-var server2 = net_server.createServer(function (client){
-
-  logger.info('(클라이언트 접근)Client connection: ');
-  logger.info('   (서버IP:PORT)local = %s:%s', client.localAddress, client.localPort);
-  logger.info('   (클라이언트IP:PORT)remote = %s:%s', client.remoteAddress, client.remotePort);
-
-  client.setTimeout(500);
-  client.setEncoding('utf8');
-
-
-  client.on('data', function(data) {
-    logger.info("(받은 데이터)Received data from client on port %d: %s", client.remotePort, data.toString());
-    writeData(client, 'Sending: ' + data.toString());
-    logger.info('(데이터 크기 Bytes sent: ' + client.bytesWritten);
-
-
-    //HTTP 리퀘스트 시작
-    var sendURL = "https://www.todayrecycle.com/trbox/test.jsp";
-    logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
-    sendData(sendURL, data.toString());
-
-  });
-
-  client.on('end', function(){
-    logger.info('(클라이언트 연결 종료)Client disconnected');
-  });
-
-  client.on('error', function(err){
-    logger.info('(소켓 에러)Socket Error: ', JSON.stringify(err));
-  });
-
-  client.on('timeout', function(){
-    logger.info('(소켓 타임아웃)Socket Timed out');
-  });
-
-
-});
-
-server2.listen(5253, function(){
-
-    logger.info('(서버 준비완료)Server listening: ' + JSON.stringify(server2.address()));
-    server2.on('close', function(){
-      logger.info('(서버 종료)Server Terminsated');
-    });
-    server2.on('error', function(err){
       logger.info('(서버 오류)Server Error: ', JSON.stringify(err));
     });
 });
