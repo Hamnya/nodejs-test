@@ -157,7 +157,7 @@ var server2 = net_server.createServer(function (client){
 server2.listen(5253, function(){
 
     logger.info('(서버 준비완료)Server listening: ' + JSON.stringify(server2.address()));
-    server.2on('close', function(){
+    server2.on('close', function(){
       logger.info('(서버 종료)Server Terminsated');
     });
     server2.on('error', function(err){
