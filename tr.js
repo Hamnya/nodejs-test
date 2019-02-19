@@ -126,7 +126,7 @@ var server2 = net_server.createServer(function (client){
   client.setEncoding('utf8');
 
 
-  client.on('data', function(data){
+  client.on('data', function(data) {
     logger.info("(받은 데이터)Received data from client on port %d: %s", client.remotePort, data.toString());
     writeData(client, 'Sending: ' + data.toString());
     logger.info('(데이터 크기 Bytes sent: ' + client.bytesWritten);
@@ -156,11 +156,11 @@ var server2 = net_server.createServer(function (client){
 
 server2.listen(5253, function(){
 
-    logger.info('(서버 준비완료)Server listening: ' + JSON.stringify(server.address()));
-    server.on('close', function(){
+    logger.info('(서버 준비완료)Server listening: ' + JSON.stringify(server2.address()));
+    server.2on('close', function(){
       logger.info('(서버 종료)Server Terminsated');
     });
-    server.on('error', function(err){
+    server2.on('error', function(err){
       logger.info('(서버 오류)Server Error: ', JSON.stringify(err));
     });
 });
