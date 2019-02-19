@@ -105,7 +105,7 @@ var server = net_server.createServer(function (client){
 
 });
 
-server.listen(5253, function(){
+server.listen(port, function(){
 
     logger.info('(서버 준비완료)Server listening: ' + JSON.stringify(server.address()));
     server.on('close', function(){
@@ -129,7 +129,7 @@ function writeData(socket, data){
 */
 function sendData(url, param){
         var tr_url = url;
-        var tr_param = {fun: 'b', data: param}
+        var tr_param = {fun: 'quan', b: param}
         request.post({
           url:tr_url,
           qs: tr_param
