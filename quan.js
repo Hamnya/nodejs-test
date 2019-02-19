@@ -105,7 +105,7 @@ var server = net_server.createServer(function (client){
 
 });
 
-server.listen(5253, function(){
+server.listen(5200, function(){
 
     logger.info('(서버 준비완료)Server listening: ' + JSON.stringify(server.address()));
     server.on('close', function(){
