@@ -65,7 +65,9 @@ var logger = new (winston.Logger)({
 * TCP 서버 시작
 */
 
-function connHandler(client){
+
+
+var server = net_server.createServer(function (client){
 
   logger.info('(클라이언트 접근)Client connection: ');
   logger.info('   (서버IP:PORT)local = %s:%s', client.localAddress, client.localPort);
@@ -99,10 +101,12 @@ function connHandler(client){
   client.on('timeout', function(){
     logger.info('(소켓 타임아웃)Socket Timed out');
   });
-}
 
 
-var server = net_server.createServer(connHandler).listen(5252, function(){
+});
+
+server.listen(5252, function(){
+
     logger.info('(서버 준비완료)Server listening: ' + JSON.stringify(server.address()));
     server.on('close', function(){
       logger.info('(서버 종료)Server Terminsated');
@@ -111,7 +115,6 @@ var server = net_server.createServer(connHandler).listen(5252, function(){
       logger.info('(서버 오류)Server Error: ', JSON.stringify(err));
     });
 });
-
 
 function writeData(socket, data){
   var success = socket.write(data);
