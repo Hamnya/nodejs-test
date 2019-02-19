@@ -102,8 +102,7 @@ function connHandler(client){
 }
 
 
-net_server.createServer(connHandler).listen(5252, function(){
-
+var server = net_server.createServer(connHandler).listen(5252, function(){
     logger.info('(서버 준비완료)Server listening: ' + JSON.stringify(server.address()));
     server.on('close', function(){
       logger.info('(서버 종료)Server Terminsated');
