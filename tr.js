@@ -80,9 +80,8 @@ var server = net_server.createServer(function (client){
   client.on('data', function(data){
     logger.info("(받은 데이터)Received data from client on port %d: %s", client.remotePort, data.toString());
     writeData(client, "\u0002"+"OK"+"\u0003");
-    logger.info('(보낸 데이터) + "\u0002"+"OK"+"\u0003");
-    logger.info('(데이터 크기 Bytes sent: client.bytesWritten);
-
+    logger.info('(보낸 데이터) OK');
+    logger.info('(데이터 크기 Bytes sent: ' + client.bytesWritten);
 
     //HTTP 리퀘스트 시작
     var sendURL = "https://www.todayrecycle.com/trbox/test.jsp";
