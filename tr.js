@@ -83,7 +83,7 @@ var ack = "\u0002"+"OK"+"\u0003";
     logger.info('(보낸 데이터) OK');
     logger.info('(데이터 크기 Bytes sent: ' + client.bytesWritten);
 
-    var cmd = data.toString.substring(0,1);
+    var cmd = data.toString().substring(0,1);
 
     if(cmd == 'E' || cmd == 'D' || cmd == 'F'){
       var sendURL = "https://www.todayrecycle.com/trbox/test2.jsp";
