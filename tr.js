@@ -85,11 +85,11 @@ var ack = "\u0002"+"OK"+"\u0003";
 
     var cmd = data.toString().substring(0,1);
 
-    if(cmd == 'E' || cmd == 'D' || cmd == 'F'){
+    if(cmd == 'E' || cmd == 'D' || cmd == 'S'){
       var sendURL = "https://www.todayrecycle.com/trbox/test2.jsp";
       logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
       sendData(sendURL, data.toString());
-    }else if(cmd == 'S'){
+    }else if(cmd == 'F'){
       var sendURL = "https://www.todayrecycle.com/trbox/test3.jsp";
       logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
       sendData(sendURL, data.toString());
