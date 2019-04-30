@@ -6,7 +6,7 @@ function getConnection(){
   var recvData = [];
   var local_port = "";
 
-  client = net_client.connect({port:5252, host:'54.180.144.77'}, function(){
+  client = net_client.connect({port:*, host:'*.*.*.*'}, function(){
     console.log("connect log==========================================================");
     console.log('connect success');
     console.log('local = ' +  this.localAddress + ':' + this.localPort);
