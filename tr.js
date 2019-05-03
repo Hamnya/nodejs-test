@@ -85,22 +85,32 @@ var ack = "\u0002"+"OK"+"\u0003";
 
     var cmd = data.toString().substring(0,1);
     var ptype = data.toString().substring(1,2);
-    
+
     if(cmd == 'E' || cmd == 'D' || cmd == 'S'){
       var sendURL = "https://www.todayrecycle.com/trbox/test2.jsp";
       logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
-      sendData(sendURL, data.toString());
+      sendData(sendURL, 'test',data.toString());
     }else if(cmd == 'F'){
       var sendURL = "https://www.todayrecycle.com/trbox/test3.jsp";
       logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
-      sendData(sendURL, data.toString());
+      sendData(sendURL,'test', data.toString());
     }else{
     //HTTP 리퀘스트 시작
       var sendURL = "https://www.todayrecycle.com/trbox/test.jsp";
       logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
-      sendData(sendURL, data.toString());
+      sendData(sendURL,'test', data.toString());
 
     }
+
+    if(ptype == 'J'){
+      var sendURL = "http://35.241.29.118/api/recycles";
+      logger.info('(JAPAN HTTP 통신 시작)Start HTTP Request URL in JAPAN : ' + sendURL);
+      sendData(sendURL,'japan', data.toString());
+    }
+
+
+
+
   });
 
   client.on('end', function(){
@@ -140,9 +150,9 @@ function writeData(socket, data){
 /*
 *   HTTP REQUEST 전송 - 보안 보완 필요
 */
-function sendData(url, param){
+function sendData(url, p1, p2){
         var tr_url = url;
-        var tr_param = {fun: 'test', data: param}
+        var tr_param = {fun: p1, data: p2}
         request.post({
           url:tr_url,
           qs: tr_param
