@@ -103,11 +103,10 @@ var ack = "\u0002"+"OK"+"\u0003";
     }
 
     if(ptype == 'J'){
-      var sendURL = "http://35.241.29.118/api/recycles";
+      var sendURL = "https://www.todayrecycle.me/api/recycles";
       logger.info('(JAPAN HTTP 통신 시작)Start HTTP Request URL in JAPAN : ' + sendURL);
       sendData(sendURL,'japan', data.toString());
     }
-
 
 
 
