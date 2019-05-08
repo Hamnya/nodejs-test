@@ -86,7 +86,7 @@ var ack = "\u0002"+"OK"+"\u0003";
     var cmd = data.toString().substring(0,1);
     var ptype = data.toString().substring(1,2);
 
-    if(cmd == 'E' || cmd == 'D' || cmd == 'S'){
+    if(cmd == 'E' || cmd == 'D' || cmd == 'S' || cmd == 'O'){
       var sendURL = "https://www.todayrecycle.com/trbox/test2.jsp";
       logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
       sendData(sendURL, 'test',data.toString());
