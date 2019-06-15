@@ -96,12 +96,12 @@ var ack = "\u0002"+"OK"+"\u0003";
       logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
       sendData(sendURL+sendPath, 'test',data.toString());
     }else if(cmd == 'F'){
-      sendPath = "https://www.todayrecycle.com/trbox/test3.jsp";
+      sendPath = "/trbox/test3.jsp";
       logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
       sendData(sendURL+sendPath, 'test',data.toString());
     }else{
     //HTTP 리퀘스트 시작 >>
-      sendPath = "https://www.todayrecycle.com/trbox/test.jsp";
+      sendPath = "/trbox/test.jsp";
       logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
       sendData(sendURL+sendPath, 'test',data.toString());
     }
@@ -112,24 +112,24 @@ var ack = "\u0002"+"OK"+"\u0003";
       // 시소 서버로 보냄
       var sendURL = "https://www.todayrecycle.me/api/recycles";
       logger.info('(JAPAN HTTP 통신 시작 in Seeso server)Start HTTP Request URL in JAPAN : ' + sendURL);
-      sendData(sendURL,'japan', data.toString());
+      sendData(sendURL,'test', data.toString());
       //./ 시소 서버
       sendPath = "/trbox/japan/type_J.jsp";
       logger.info('(JAPAN HTTP 통신 시작 in TR server)Start HTTP Request URL in JAPAN : ' + sendURL);
-      sendData(sendURL+sendPath,'japan', data.toString());
+      sendData(sendURL+sendPath,'test', data.toString());
 
     }else if(ptype == 'T'){
       sendPath = "/trbox/korea/type_T.jsp";
       logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
-      sendData(sendURL+sendPath,'japan', data.toString());
+      sendData(sendURL+sendPath,'korea', data.toString());
     }else if(ptype == 'S'){
       sendPath = "/trbox/korea/type_S.jsp";
       logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
-      sendData(sendURL+sendPath,'japan', data.toString());
+      sendData(sendURL+sendPath,'korea', data.toString());
     }else if(ptype == 's'){
       sendPath = "/trbox/korea/type_s.jsp";
       logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
-      sendData(sendURL+sendPath,'japan', data.toString());
+      sendData(sendURL+sendPath,'korea', data.toString());
     }
 
 
