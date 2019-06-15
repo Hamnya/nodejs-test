@@ -69,6 +69,7 @@ var logger = new (winston.Logger)({
 
 var server = net_server.createServer(function (client){
 var ack = "\u0002"+"OK"+"\u0003";
+
   logger.info('(클라이언트 접근)Client connection: ');
   logger.info('   (서버IP:PORT)local = %s:%s', client.localAddress, client.localPort);
   logger.info('   (클라이언트IP:PORT)remote = %s:%s', client.remoteAddress, client.remotePort);
@@ -78,6 +79,8 @@ var ack = "\u0002"+"OK"+"\u0003";
 
 
   client.on('data', function(data){
+
+
     logger.info("(받은 데이터)Received data from client on port %d: %s", client.remotePort, data.toString());
     writeData(client, ack);
     logger.info('(보낸 데이터) OK');
@@ -85,29 +88,49 @@ var ack = "\u0002"+"OK"+"\u0003";
 
     var cmd = data.toString().substring(0,1);
     var ptype = data.toString().substring(1,2);
-
+    var sendURL = "https://www.todayrecycle.com";
+    var sendPath ="";
+  //  데이터 확인 용도
     if(cmd == 'E' || cmd == 'D' || cmd == 'S' || cmd == 'O'){
-      var sendURL = "https://www.todayrecycle.com/trbox/test2.jsp";
+      sendPath = "trbox/test2.jsp";
       logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
-      sendData(sendURL, 'test',data.toString());
+      sendData(sendURL+sendPath, 'test',data.toString());
     }else if(cmd == 'F'){
-      var sendURL = "https://www.todayrecycle.com/trbox/test3.jsp";
+      sendPath = "https://www.todayrecycle.com/trbox/test3.jsp";
       logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
-      sendData(sendURL,'test', data.toString());
+      sendData(sendURL+sendPath, 'test',data.toString());
     }else{
-    //HTTP 리퀘스트 시작
-      var sendURL = "https://www.todayrecycle.com/trbox/test.jsp";
+    //HTTP 리퀘스트 시작 >>
+      sendPath = "https://www.todayrecycle.com/trbox/test.jsp";
       logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
-      sendData(sendURL,'test', data.toString());
-
+      sendData(sendURL+sendPath, 'test',data.toString());
     }
 
+// 데이터 실제 삽입
     if(ptype == 'J'){
-      var sendURL = "https://www.todayrecycle.me/api/recycles";
-      logger.info('(JAPAN HTTP 통신 시작)Start HTTP Request URL in JAPAN : ' + sendURL);
-      sendData(sendURL,'japan', data.toString());
-    }
 
+      // 시소 서버로 보냄
+      var sendURL = "https://www.todayrecycle.me/api/recycles";
+      logger.info('(JAPAN HTTP 통신 시작 in Seeso server)Start HTTP Request URL in JAPAN : ' + sendURL);
+      sendData(sendURL,'japan', data.toString());
+      //./ 시소 서버
+      sendPath = "/trbox/japan/type_J.jsp";
+      logger.info('(JAPAN HTTP 통신 시작 in TR server)Start HTTP Request URL in JAPAN : ' + sendURL);
+      sendData(sendURL+sendPath,'japan', data.toString());
+
+    }else if(ptype == 'T'){
+      sendPath = "/trbox/korea/type_T.jsp";
+      logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
+      sendData(sendURL+sendPath,'japan', data.toString());
+    }else if(ptype == 'S'){
+      sendPath = "/trbox/korea/type_S.jsp";
+      logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
+      sendData(sendURL+sendPath,'japan', data.toString());
+    }else if(ptype == 's'){
+      sendPath = "/trbox/korea/type_s.jsp";
+      logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
+      sendData(sendURL+sendPath,'japan', data.toString());
+    }
 
 
   });
