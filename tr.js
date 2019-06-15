@@ -115,20 +115,20 @@ var ack = "\u0002"+"OK"+"\u0003";
       sendData(sendURL,'test', data.toString());
       //./ 시소 서버
       sendPath = "/trbox/japan/type_J.jsp";
-      logger.info('(JAPAN HTTP 통신 시작 in TR server)Start HTTP Request URL in JAPAN : ' + sendURL);
+      logger.info('(JAPAN HTTP 통신 시작 in TR server)Start HTTP Request URL in JAPAN : ' + sendURL+sendPath);
       sendData(sendURL+sendPath,'test', data.toString());
 
     }else if(ptype == 'T'){
       sendPath = "/trbox/korea/type_T.jsp";
-      logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
+      logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL+sendPath);
       sendData(sendURL+sendPath,'korea', data.toString());
     }else if(ptype == 'S'){
       sendPath = "/trbox/korea/type_S.jsp";
-      logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
+      logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL+sendPath);
       sendData(sendURL+sendPath,'korea', data.toString());
     }else if(ptype == 's'){
       sendPath = "/trbox/korea/type_s.jsp";
-      logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
+      logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL+sendPath);
       sendData(sendURL+sendPath,'korea', data.toString());
     }
 
