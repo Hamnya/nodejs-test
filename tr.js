@@ -92,7 +92,7 @@ var ack = "\u0002"+"OK"+"\u0003";
     var sendPath ="";
   //  데이터 확인 용도
     if(cmd == 'E' || cmd == 'D' || cmd == 'S' || cmd == 'O'){
-      sendPath = "trbox/test2.jsp";
+      sendPath = "/trbox/test2.jsp";
       logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL);
       sendData(sendURL+sendPath, 'test',data.toString());
     }else if(cmd == 'F'){
