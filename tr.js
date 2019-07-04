@@ -130,6 +130,10 @@ var ack = "\u0002"+"OK"+"\u0003";
       sendPath = "/trbox/korea/type_s.jsp";
       logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL+sendPath);
       sendData(sendURL+sendPath,'korea', data.toString());
+    }else if(ptype == 'b'){
+      sendPath = "/trbox/korea/type_b.jsp";
+      logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL+sendPath);
+      sendData(sendURL+sendPath,'korea', data.toString());
     }
 
 
