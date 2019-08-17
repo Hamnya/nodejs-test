@@ -6,7 +6,7 @@ var moment = require('moment'); //시간 처리 모듈
 var port = 5254;
 /*
 * 로그 파일 셋팅 winston commit test
-* eric test
+* 
 */
 
 
@@ -79,6 +79,8 @@ var server = net_server.createServer(function (client){
   client.setEncoding('utf8');
 
 
+
+  //Receive data from arduino board
   client.on('data', function(data){
     logger.info("(받은 데이터)Received data from client on port %d: %s", client.remotePort, data.toString());
     writeData(client, 'Sending: ' + data.toString());
