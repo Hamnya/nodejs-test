@@ -5,7 +5,7 @@ var winstonDaily = require('winston-daily-rotate-file'); // 로그 일별 처리
 var moment = require('moment'); //시간 처리 모듈
 var port = 5254;
 /*
-* 로그 파일 셋팅 winston
+* 로그 파일 셋팅 winston commit test
 */
 
 
