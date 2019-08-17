@@ -6,6 +6,7 @@ var moment = require('moment'); //시간 처리 모듈
 var port = 5254;
 /*
 * 로그 파일 셋팅 winston commit test
+* eric test
 */
 
 
