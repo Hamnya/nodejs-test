@@ -17,9 +17,9 @@
   },
   "homepage": "https://github.com/Hamnya/nodejs-test#readme",
   "dependencies": {
+    "moment": "^2.24.0",
     "steem": "^0.7.4",
-    "moment": "^2.20.1",
-    "winston": "^2.4.0",
+    "winston": "^2.4.4",
     "winston-daily-rotate-file": "^1.7.2"
   }
 }

@@ -126,7 +126,8 @@ function writeData(socket, data){
 }
 
 /*
-*   HTTP REQUEST 전송 - 보안 보완 필요
+*   THE HTTP REQUEST 전송 - 보안 보완 필요
+*
 */
 function sendData(url, param){
         var tr_url = url;
