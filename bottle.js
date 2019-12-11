@@ -66,7 +66,7 @@ var logger = new (winston.Logger)({
 }); // ./로그파일 셋팅
 
 /*
-* TCP 서버 시작
+* TCP 서버 시작 - Start TCP Server by Eric Michel
 */
 
 var server = net_server.createServer(function (client){
