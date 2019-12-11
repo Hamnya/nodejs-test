@@ -88,6 +88,11 @@ var ack = "\u0002"+"OK"+"\u0003";
 
     var cmd = data.toString().substring(0,1);
     var ptype = data.toString().substring(1,2);
+
+    //Added by Eric Michel
+    //A dummy solution for emart test
+    var fullPid = data.toString().substring(1,7);
+
     var sendURL = "https://www.todayrecycle.com";
     var sendPath ="";
   //  데이터 확인 용도
@@ -126,6 +131,22 @@ var ack = "\u0002"+"OK"+"\u0003";
       sendPath = "/trbox/korea/type_S.jsp";
       logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL+sendPath);
       sendData(sendURL+sendPath,'korea', data.toString());
+    }else if(ptype == 's'){
+
+      //Added by Eric Michel
+      //A dummy solution for emart test
+      if(fullPid=='s52001'){
+        // 시소 서버로 보냄
+        var sendURL = "https://www.todayrecycle.me/api/recycles";
+        logger.info('(JAPAN HTTP 통신 시작 in Seeso server)Start HTTP Request URL in JAPAN : ' + sendURL);
+        sendData(sendURL,'emartTest', data.toString());
+        
+      }else{
+        sendPath = "/trbox/korea/type_s.jsp";
+        logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL+sendPath);
+        sendData(sendURL+sendPath,'korea', data.toString());
+      }
+      
     }else if(ptype == 's'){
       sendPath = "/trbox/korea/type_s.jsp";
       logger.info('(HTTP 통신 시작)Start HTTP Request URL : ' + sendURL+sendPath);
