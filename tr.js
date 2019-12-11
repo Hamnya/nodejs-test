@@ -91,7 +91,7 @@ var ack = "\u0002"+"OK"+"\u0003";
 
     //Added by Eric Michel
     //A dummy solution for emart test
-    var fullPid = data.toString().substring(1,7);
+    var pidPrefix = data.toString().substring(1,5);
 
     var sendURL = "https://www.todayrecycle.com";
     var sendPath ="";
@@ -135,7 +135,7 @@ var ack = "\u0002"+"OK"+"\u0003";
 
       //Added by Eric Michel
       //A dummy solution for emart test
-      if(fullPid=='s52001'){
+      if(pidPrefix=='s952'){
         // 시소 서버로 보냄
         var sendURL = "https://www.todayrecycle.me/api/recycles";
         logger.info('(JAPAN HTTP 통신 시작 in Seeso server)Start HTTP Request URL in JAPAN : ' + sendURL);
